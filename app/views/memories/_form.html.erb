@@ -1,0 +1,42 @@
+<%= form_with(model: memory, local: true) do |form| %>
+  <% if memory.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(memory.errors.count, "error") %> prohibited this memory from being saved:</h2>
+
+      <ul>
+      <% memory.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.datetime_select :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weather %>
+    <%= form.text_field :weather %>
+  </div>
+
+  <div class="field">
+    <%= form.label :local %>
+    <%= form.text_field :local %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

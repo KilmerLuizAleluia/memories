@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :memories
   devise_for :users
-  root 'welcome#index'
+  root 'memories#index'
 end
