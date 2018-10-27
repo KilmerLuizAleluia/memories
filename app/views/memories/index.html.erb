@@ -18,10 +18,10 @@
     <% @memories.each do |memory| %>
       <tr>
         <td><%= memory.description %></td>
-        <td><%= memory.date %></td>
+        <td><%= memory.formatted_date %></td>
         <td><%= memory.weather %></td>
         <td><%= memory.local %></td>
-        <td><%= memory.user %></td>
+        <td><%= memory.user.name %></td>
         <td><%= link_to 'Show', memory %></td>
         <td><%= link_to 'Edit', edit_memory_path(memory) %></td>
         <td><%= link_to 'Destroy', memory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
