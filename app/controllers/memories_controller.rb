@@ -15,6 +15,7 @@ class MemoriesController < ApplicationController
 
   # GET /memories/new
   def new
+    request.env['HTTP_X_REAL_IP'] = '164.41.4.26' if Rails.env.development?
     @memory = Memory.new(weather: get_weather)
   end
 
@@ -78,6 +79,6 @@ class MemoriesController < ApplicationController
     response = RestClient.get(
       "api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{lon}&APPID=13f011f2cc8ad799fba2ffa35d99a50f"
     )
-    JSON.parse(response.body)['weather'].first['description']
+    (JSON.parse(response.body)['weather'].first['description']).capitalize
   end
 end
