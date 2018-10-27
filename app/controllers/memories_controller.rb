@@ -75,7 +75,6 @@ class MemoriesController < ApplicationController
   def get_weather
     lat = request.location.coordinates[0]
     lon = request.location.coordinates[1]
-    byebug
     response = RestClient.get(
       "api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{lon}&APPID=13f011f2cc8ad799fba2ffa35d99a50f"
     )
