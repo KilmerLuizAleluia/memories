@@ -26,6 +26,7 @@ class MemoriesController < ApplicationController
   # POST /memories.json
   def create
     @memory = Memory.new(memory_params)
+    @memory.user = current_user
 
     respond_to do |format|
       if @memory.save
