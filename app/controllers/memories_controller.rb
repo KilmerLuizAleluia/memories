@@ -15,7 +15,7 @@ class MemoriesController < ApplicationController
 
   # GET /memories/new
   def new
-    @memory = Memory.new
+    @memory = Memory.new(weather: get_weather)
   end
 
   # GET /memories/1/edit
@@ -64,13 +64,21 @@ class MemoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_memory
-      @memory = Memory.find(params[:id])
-    end
+  def set_memory
+    @memory = Memory.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def memory_params
-      params.require(:memory).permit(:description, :date, :weather, :local, :user_id)
-    end
+  def memory_params
+    params.require(:memory).permit(:description, :date, :weather, :local, :user_id)
+  end
+
+  def get_weather
+    lat = request.location.coordinates[0]
+    lon = request.location.coordinates[1]
+    byebug
+    response = RestClient.get(
+      "api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{lon}&APPID=13f011f2cc8ad799fba2ffa35d99a50f"
+    )
+    JSON.parse(response.body)['weather'].first['description']
+  end
 end
