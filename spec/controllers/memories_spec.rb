@@ -64,4 +64,54 @@ RSpec.describe MemoriesController, type: :controller do
       expect { delete :destroy, params: { id: memory.id } }.to change(Memory, :count).by(-1)
     end
   end
+
+  describe '#index' do
+    before :all do
+      Memory.delete_all
+      User.delete_all
+
+      @user = FactoryBot.create :user
+      @user2 = FactoryBot.create :user
+
+      @m1 = Memory.create(description: 'memory', date: Date.today - 2.days, weather: 'Sunny', local: 'Brasília',
+                         user: @user).id
+      @m2 = Memory.create(description: 'memory', date: Date.today - 2.days, weather: 'Sunny', local: 'Rio de Janeiro',
+                    user: @user).id
+      @m3 = Memory.create(description: 'memory', date: Date.today - 2.days, weather: 'Sunny', local: 'Brasília',
+                         user: @user).id
+      @m4 = Memory.create(description: 'memory', date: Date.today - 2.days, weather: 'Storm', local: 'Brasília',
+                         user: @user).id
+      @m5 = Memory.create(description: 'memory', date: Date.today - 2.days, weather: 'Storm', local: 'Brasília',
+                         user: @user2).id
+
+      @m6 = Memory.create(description: 'memory', date: Date.today - 1.day, weather: 'Scattered clouds', local: 'Brasília',
+                    user: @user).id
+      @m7 = Memory.create(description: 'memory', date: Date.today - 1.day, weather: 'Sunny', local: 'Rio de Janeiro',
+                    user: @user).id
+      @m8 = Memory.create(description: 'memory', date: Date.today - 1.day, weather: 'Sunny', local: 'Rio de Janeiro',
+                    user: @user).id
+      @m9 = Memory.create(description: 'memory', date: Date.today - 1.day, weather: 'Sunny', local: 'Rio de Janeiro',
+                    user: @user2).id
+
+      @m10 = Memory.create(description: 'memory', date: Date.today, weather: 'Storm', local: 'Brasília', user: @user).id
+      @m11 = Memory.create(description: 'memory', date: Date.today, weather: 'Storm', local: 'Rio de Janeiro',
+                          user: @user).id
+      @m12 = Memory.create(description: 'memory', date: Date.today, weather: 'Storm', local: 'Rio de Janeiro',
+                          user: @user).id
+      @m13 = Memory.create(description: 'memory', date: Date.today, weather: 'Storm', local: 'Rio de Janeiro',
+                          user: @user2).id
+    end
+    it 'should retrieve only current user memories' do
+      sign_in @user
+      get :index
+      memories = assigns(:memories)
+      expect(memories.count).to eq 10
+    end
+    it 'should retrieve memories sorted by date (DESC), weather, and local' do
+      sign_in @user
+      get :index
+      memories = assigns(:memories)
+      expect(memories.pluck(:id)).to eq [@m10, @m12, @m11, @m6, @m7, @m8, @m4, @m3, @m1, @m2]
+    end
+  end
 end

@@ -7,8 +7,7 @@ RSpec.describe Memory, type: :model do
 
   context 'validations' do
     it 'is not valid without a first_name' do
-      user = FactoryBot.create :user
-      memory = Memory.new(description: nil, user: user)
+      memory = Memory.new(description: nil)
       expect(memory).to_not be_valid
     end
   end
