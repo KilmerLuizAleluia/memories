@@ -45,4 +45,23 @@ RSpec.describe MemoriesController, type: :controller do
       expect(response).to render_template(:edit)
     end
   end
+
+  describe '#update' do
+    it 'update users' do
+      user = FactoryBot.create :user
+      sign_in user
+      memory = FactoryBot.create(:memory)
+      patch :update, params: {id: memory.id, memory: {description: 'new description'}}
+      expect(memory.reload.description).to eq 'new description'
+    end
+  end
+
+  describe '#destroy' do
+    it 'destroys a memory' do
+      user = FactoryBot.create :user
+      sign_in user
+      memory = FactoryBot.create(:memory)
+      expect { delete :destroy, params: { id: memory.id } }.to change(Memory, :count).by(-1)
+    end
+  end
 end
