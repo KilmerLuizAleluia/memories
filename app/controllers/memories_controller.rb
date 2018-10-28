@@ -5,7 +5,7 @@ class MemoriesController < ApplicationController
   # GET /memories
   # GET /memories.json
   def index
-    @memories = Memory.all
+    @memories = Memory.ordered_by_attributes.where(user_id: current_user.id)
   end
 
   # GET /memories/1

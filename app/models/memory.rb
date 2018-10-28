@@ -1,7 +1,9 @@
 class Memory < ApplicationRecord
   belongs_to :user
 
+  scope :ordered_by_attributes, -> { order('date, weather, local') }
+
   def formatted_date
-    self.date.strftime('%B %d, %Y at %I:%M %p')
+    self.date.strftime('%B %d, %Y')
   end
 end
