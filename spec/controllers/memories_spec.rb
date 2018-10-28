@@ -25,4 +25,24 @@ RSpec.describe MemoriesController, type: :controller do
       expect { post :create, params: {memory: {local: 'Rio de Janeiro'}} }.to change(Memory, :count).by 0
     end
   end
+
+  describe '#show' do
+    it 'renders a memory' do
+      user = FactoryBot.create :user
+      sign_in user
+      memory = FactoryBot.create(:memory)
+      get :show, params: { id: memory.id }
+      expect(response).to render_template 'memories/show'
+    end
+  end
+
+  describe '#edit' do
+    it 'renders' do
+      user = FactoryBot.create :user
+      sign_in user
+      memory = FactoryBot.create(:memory)
+      get :edit, params: { id: memory.id }
+      expect(response).to render_template(:edit)
+    end
+  end
 end
