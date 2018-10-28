@@ -14,7 +14,7 @@ class MemoriesController < ApplicationController
 
   # GET /memories/new
   def new
-    request.env['HTTP_X_REAL_IP'] = '164.41.4.26' if Rails.env.development?
+    request.env['HTTP_X_REAL_IP'] = '164.41.4.26' unless Rails.env.production?
     @memory = Memory.new(weather: retrieve_weather, local: request.location.city)
   end
 

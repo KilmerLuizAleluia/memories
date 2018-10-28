@@ -5,6 +5,14 @@ RSpec.describe Memory, type: :model do
     it { should belong_to :user }
   end
 
+  context 'validations' do
+    it 'is not valid without a first_name' do
+      user = FactoryBot.create :user
+      memory = Memory.new(description: nil, user: user)
+      expect(memory).to_not be_valid
+    end
+  end
+
   context 'model methods' do
     describe '#formatted_date' do
       it 'should format memory date' do
