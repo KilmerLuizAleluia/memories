@@ -1,5 +1,5 @@
 class MemoriesController < ApplicationController
-  before_action :set_memory, only: [:show, :edit, :update, :destroy]
+  before_action :set_memory, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
   # GET /memories
@@ -10,8 +10,7 @@ class MemoriesController < ApplicationController
 
   # GET /memories/1
   # GET /memories/1.json
-  def show
-  end
+  def show; end
 
   # GET /memories/new
   def new
@@ -20,8 +19,7 @@ class MemoriesController < ApplicationController
   end
 
   # GET /memories/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /memories
   # POST /memories.json
@@ -65,6 +63,7 @@ class MemoriesController < ApplicationController
   end
 
   private
+
   def set_memory
     @memory = Memory.find(params[:id])
   end
@@ -79,6 +78,6 @@ class MemoriesController < ApplicationController
     response = RestClient.get(
       "api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{lon}&APPID=13f011f2cc8ad799fba2ffa35d99a50f"
     )
-    (JSON.parse(response.body)['weather'].first['description']).capitalize
+    JSON.parse(response.body)['weather'].first['description'].capitalize
   end
 end

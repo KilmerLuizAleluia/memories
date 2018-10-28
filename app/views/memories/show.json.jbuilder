@@ -1,1 +1,1 @@
-json.partial! "memories/memory", memory: @memory
+json.partial! 'memories/memory', memory: @memory
