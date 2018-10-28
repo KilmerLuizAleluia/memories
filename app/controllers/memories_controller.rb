@@ -15,7 +15,7 @@ class MemoriesController < ApplicationController
   # GET /memories/new
   def new
     request.env['HTTP_X_REAL_IP'] = '164.41.4.26' if Rails.env.development?
-    @memory = Memory.new(weather: get_weather, local: request.location.city)
+    @memory = Memory.new(weather: retrieve_weather, local: request.location.city)
   end
 
   # GET /memories/1/edit
@@ -72,11 +72,10 @@ class MemoriesController < ApplicationController
     params.require(:memory).permit(:description, :date, :weather, :local, :user_id)
   end
 
-  def get_weather
-    lat = request.location.coordinates[0]
-    lon = request.location.coordinates[1]
+  def retrieve_weather
+    coord = request.location.coordinates
     response = RestClient.get(
-      "api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{lon}&APPID=13f011f2cc8ad799fba2ffa35d99a50f"
+      "api.openweathermap.org/data/2.5/weather?lat=#{coord[0]}&lon=#{coord[1]}&APPID=13f011f2cc8ad799fba2ffa35d99a50f"
     )
     JSON.parse(response.body)['weather'].first['description'].capitalize
   end
