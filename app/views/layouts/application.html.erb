@@ -13,8 +13,8 @@
   <% if user_signed_in? %>
       <div class="ui fixed inverted menu" style="margin-top: 0;" >
       <div class="ui container" >
-      <span class="header item">Logged in as <strong><%= current_user.email %></strong></span>
-      <%= link_to 'Edit profile', edit_user_registration_path, :class => 'header item' %> 
+      <%= link_to "Hello, #{current_user.name}!", memories_path, :class => 'header item' %>
+      <%= link_to 'Edit profile', edit_user_registration_path, :class => 'header item' %>
       <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'header item'  %>
       </div>
       </div>

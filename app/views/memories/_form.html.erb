@@ -1,37 +1,41 @@
-<%= form_with(model: memory, local: true) do |form| %>
-  <% if memory.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(memory.errors.count, "error") %> prohibited this memory from being saved:</h2>
+<div class='ui middle aligned center aligned grid' style="margin-top: 2%">
+  <div class="ui stacked segment">
 
-      <ul>
-      <% memory.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <%= form_with(model: memory, local: true, html: {class: 'ui large form'}) do |form| %>
+        <% if memory.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(memory.errors.count, "error") %> prohibited this memory from being saved:</h2>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+              <ul>
+                <% memory.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="field">
+          <%= form.text_area :description, placeholder: 'Description' %>
+        </div>
+
+        <div class="field inline">
+          <%= form.date_select :date %>
+        </div>
+
+        <div class="field">
+          <%= form.text_field :weather, placeholder: 'Weahter' %>
+        </div>
+
+        <div class="field">
+          <%= form.text_field :local, placeholder: 'Local' %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit 'Create Memory', class: 'ui fluid large blue submit button' %>
+        </div>
+    <% end %>
+
+    <%= link_to 'Back', memories_path, class: 'ui fluid large black submit button' %>
+
   </div>
-
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.datetime_select :date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :weather %>
-    <%= form.text_field :weather %>
-  </div>
-
-  <div class="field">
-    <%= form.label :local %>
-    <%= form.text_field :local %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
