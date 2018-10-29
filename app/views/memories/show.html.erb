@@ -1,29 +1,36 @@
-<p id="notice"><%= notice %></p>
+<div class="ui card align center" style="margin-top: 10%">
 
-<p>
-  <strong>Description:</strong>
-  <%= @memory.description %>
-</p>
+  <div class="content">
+    <div class="header">Memory</div>
+  </div>
 
-<p>
-  <strong>Date:</strong>
-  <%= @memory.formatted_date %>
-</p>
+  <div class="content">
+    <p>
+      <strong class="ui sub header">Description:</strong>
+      <%= @memory.description %>
+    </p>
 
-<p>
-  <strong>Weather:</strong>
-  <%= @memory.weather %>
-</p>
+    <p>
+      <strong class="ui sub header">Date:</strong>
+      <%= @memory.formatted_date %>
+    </p>
 
-<p>
-  <strong>Local:</strong>
-  <%= @memory.local %>
-</p>
+    <p>    <strong class="ui sub header">Weather:</strong>
+      <%= @memory.weather %>
+    </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @memory.user.name %>
-</p>
+    <p>    <strong class="ui sub header">Local:</strong>
+      <%= @memory.local %>
+    </p>
 
-<%= link_to 'Edit', edit_memory_path(@memory) %> |
-<%= link_to 'Back', memories_path %>
+    <p>    <strong class="ui sub header">User:</strong>
+      <%= @memory.user.name %>
+    </p>
+
+  </div>
+  <div class="content">
+    <%= link_to 'Edit', edit_memory_path(@memory), class: 'ui fluid large blue submit button' %>
+    <br/>
+    <%= link_to 'Back', memories_path, class: 'ui fluid large black submit button' %>
+  </div>
+</div>
