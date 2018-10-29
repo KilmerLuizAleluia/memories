@@ -17,12 +17,12 @@ RSpec.describe MemoriesController, type: :controller do
       user = FactoryBot.create :user
       sign_in user
       attributes = FactoryBot.attributes_for :memory
-      expect { post :create, params: {memory: attributes} }.to change(Memory, :count).by 1
+      expect { post :create, params: { memory: attributes } }.to change(Memory, :count).by 1
     end
     it 'should not create memory' do
       user = FactoryBot.create :user
       sign_in user
-      expect { post :create, params: {memory: {local: 'Rio de Janeiro'}} }.to change(Memory, :count).by 0
+      expect { post :create, params: { memory: { local: 'Rio de Janeiro' } } }.to change(Memory, :count).by 0
     end
   end
 
@@ -51,7 +51,7 @@ RSpec.describe MemoriesController, type: :controller do
       user = FactoryBot.create :user
       sign_in user
       memory = FactoryBot.create(:memory)
-      patch :update, params: {id: memory.id, memory: {description: 'new description'}}
+      patch :update, params: { id: memory.id, memory: { description: 'new description' } }
       expect(memory.reload.description).to eq 'new description'
     end
   end
@@ -74,32 +74,32 @@ RSpec.describe MemoriesController, type: :controller do
       @user2 = FactoryBot.create :user
 
       @m1 = Memory.create(description: 'memory', date: Date.today - 2.days, weather: 'Sunny', local: 'Brasília',
-                         user: @user).id
+                          user: @user).id
       @m2 = Memory.create(description: 'memory', date: Date.today - 2.days, weather: 'Sunny', local: 'Rio de Janeiro',
-                    user: @user).id
+                          user: @user).id
       @m3 = Memory.create(description: 'memory', date: Date.today - 2.days, weather: 'Sunny', local: 'Brasília',
-                         user: @user).id
+                          user: @user).id
       @m4 = Memory.create(description: 'memory', date: Date.today - 2.days, weather: 'Storm', local: 'Brasília',
-                         user: @user).id
+                          user: @user).id
       @m5 = Memory.create(description: 'memory', date: Date.today - 2.days, weather: 'Storm', local: 'Brasília',
-                         user: @user2).id
+                          user: @user2).id
 
       @m6 = Memory.create(description: 'memory', date: Date.today - 1.day, weather: 'Scattered clouds', local: 'Brasília',
-                    user: @user).id
+                          user: @user).id
       @m7 = Memory.create(description: 'memory', date: Date.today - 1.day, weather: 'Sunny', local: 'Rio de Janeiro',
-                    user: @user).id
+                          user: @user).id
       @m8 = Memory.create(description: 'memory', date: Date.today - 1.day, weather: 'Sunny', local: 'Rio de Janeiro',
-                    user: @user).id
+                          user: @user).id
       @m9 = Memory.create(description: 'memory', date: Date.today - 1.day, weather: 'Sunny', local: 'Rio de Janeiro',
-                    user: @user2).id
+                          user: @user2).id
 
       @m10 = Memory.create(description: 'memory', date: Date.today, weather: 'Storm', local: 'Brasília', user: @user).id
       @m11 = Memory.create(description: 'memory', date: Date.today, weather: 'Storm', local: 'Rio de Janeiro',
-                          user: @user).id
+                           user: @user).id
       @m12 = Memory.create(description: 'memory', date: Date.today, weather: 'Storm', local: 'Rio de Janeiro',
-                          user: @user).id
+                           user: @user).id
       @m13 = Memory.create(description: 'memory', date: Date.today, weather: 'Storm', local: 'Rio de Janeiro',
-                          user: @user2).id
+                           user: @user2).id
     end
     it 'should retrieve only current user memories' do
       sign_in @user

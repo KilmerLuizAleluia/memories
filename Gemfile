@@ -15,6 +15,7 @@ gem 'rails-controller-testing'
 gem 'rest-client'
 gem 'rubocop', require: false
 gem 'sass-rails', '~> 5.0'
+gem 'semantic-ui-sass'
 gem 'shoulda-matchers'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'

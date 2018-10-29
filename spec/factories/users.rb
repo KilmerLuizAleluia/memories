@@ -5,6 +5,6 @@ FactoryBot.define do
     sequence :email do |n|
       "kilmer#{n}@email.com"
     end
-    password    { 'qweasd' }
+    password { 'qweasd' }
   end
 end
