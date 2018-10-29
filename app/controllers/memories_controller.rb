@@ -75,7 +75,7 @@ class MemoriesController < ApplicationController
   def retrieve_weather
     coord = request.location.coordinates
     response = RestClient.get(
-      "api.openweathermap.org/data/2.5/weather?lat=#{coord[0]}&lon=#{coord[1]}&APPID=13f011f2cc8ad799fba2ffa35d99a50f"
+      "api.openweathermap.org/data/2.5/weather?lat=#{coord[0]}&lon=#{coord[1]}&APPID=#{ENV['OWM_KEY']}"
     )
     JSON.parse(response.body)['weather'].first['description'].capitalize
   end
