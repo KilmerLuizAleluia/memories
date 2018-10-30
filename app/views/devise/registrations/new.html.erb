@@ -4,26 +4,41 @@
       <%= devise_error_messages! %>
 
       <div class="field">
-        <%= f.text_field :first_name, placeholder: 'First name', autofocus: true %>
+        <div class="ui left icon input">
+          <i class="user icon"></i>
+          <%= f.text_field :first_name, placeholder: 'First name', autofocus: true %>
+        </div>
       </div>
 
       <div class="field">
-        <%= f.text_field :last_name, placeholder: 'Last name' %>
+        <div class="ui left icon input">
+          <i class="user outline icon"></i>
+          <%= f.text_field :last_name, placeholder: 'Last name' %>
+        </div>
       </div>
 
       <div class="field">
-        <%= f.email_field :email, placeholder: 'E-mail address', autocomplete: "email" %>
+        <div class="ui left icon input">
+          <i class="envelope icon"></i>
+          <%= f.email_field :email, placeholder: 'E-mail address', autocomplete: "email" %>
+        </div>
       </div>
 
       <div class="field">
         <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br/>
-        <%= f.password_field :password, placeholder: 'Password', autocomplete: "new-password" %>
+        <div class="ui left icon input">
+          <i class="lock icon"></i>
+          <%= f.password_field :password, placeholder: 'Password', autocomplete: "new-password" %>
+        </div>
       </div>
 
       <div class="field">
-        <%= f.password_field :password_confirmation, placeholder: 'Password Confirmation', autocomplete: "new-password" %>
+        <div class="ui left icon input">
+          <i class="lock icon"></i>
+          <%= f.password_field :password_confirmation, placeholder: 'Password Confirmation', autocomplete: "new-password" %>
+        </div>
       </div>
 
       <div class="actions">
