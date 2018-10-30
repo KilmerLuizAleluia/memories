@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This system record memories of the user. The memories are ordered based on Date (DESC), Weather, and Local, respectively, creating relation between them based on that values. 
+The simpler the better. 
 
-Things you may want to cover:
+* Ruby version: 2.5.1
 
-* Ruby version
+* How to run the test suite: run `bundle exec rspec` locally
 
-* System dependencies
+* Heroku address: https://bx-memories.herokuapp.com/
 
-* Configuration
+### TODO
+* Add filters for Date, Weather and Local;
 
-* Database creation
+* Color card background based on their relationship (date~weather~loca), with a continuously set of color;
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Improve User Experience overall
