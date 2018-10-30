@@ -1,10 +1,10 @@
 <div class="ui card align center" style="margin-top: 10%">
 
-  <div class="content">
+  <div class="content memory-title">
     <div class="header">Memory</div>
   </div>
 
-  <div class="content">
+  <div class="content memory-data">
     <p>
       <strong class="ui sub header">Description:</strong>
       <%= @memory.description %>
@@ -28,7 +28,7 @@
     </p>
 
   </div>
-  <div class="content">
+  <div class="content memory-buttons">
     <%= link_to 'Edit', edit_memory_path(@memory), class: 'ui fluid large blue submit button' %>
     <br/>
     <%= link_to 'Done', memories_path, class: 'ui fluid large black submit button' %>
