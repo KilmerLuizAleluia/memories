@@ -5,15 +5,24 @@
     <%= devise_error_messages! %>
 
     <div class="field">
-      <%= f.text_field :first_name, placeholder: 'First Name', autofocus: true %>
+      <div class="ui left icon input">
+        <i class="user icon"></i>
+        <%= f.text_field :first_name, placeholder: 'First Name', autofocus: true %>
+      </div>
     </div>
 
     <div class="field">
-      <%= f.text_field :last_name, placeholder: 'Last Name' %>
+      <div class="ui left icon input">
+        <i class="user outline icon"></i>
+        <%= f.text_field :last_name, placeholder: 'Last Name' %>
+      </div>
     </div>
 
     <div class="field">
-      <%= f.email_field :email, placeholder: 'E-mail Address', autocomplete: "email" %>
+      <div class="ui left icon input">
+        <i class="envelope icon"></i>
+        <%= f.email_field :email, placeholder: 'E-mail Address', autocomplete: "email" %>
+      </div>
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -22,7 +31,10 @@
 
     <div class="field">
       <i>(leave blank if you don't want to change it)</i><br/>
-      <%= f.password_field :password, placeholder: 'New Password', autocomplete: "new-password" %>
+      <div class="ui left icon input">
+        <i class="lock icon"></i>
+        <%= f.password_field :password, placeholder: 'New Password', autocomplete: "new-password" %>
+      </div>
       <% if @minimum_password_length %>
           <br/>
           <em><%= @minimum_password_length %> characters minimum</em>
@@ -30,11 +42,17 @@
     </div>
 
     <div class="field">
-      <%= f.password_field :password_confirmation, placeholder: 'Password', autocomplete: "new-password" %>
+      <div class="ui left icon input">
+        <i class="lock icon"></i>
+        <%= f.password_field :password_confirmation, placeholder: 'Password', autocomplete: "new-password" %>
+      </div>
     </div>
 
     <div class="field">
-      <%= f.password_field :current_password, placeholder: 'Password Confirmation', autocomplete: "current-password" %>
+      <div class="ui left icon input">
+        <i class="lock icon"></i>
+        <%= f.password_field :current_password, placeholder: 'Password Confirmation', autocomplete: "current-password" %>
+      </div>
     </div>
 
     <div class="actions">
